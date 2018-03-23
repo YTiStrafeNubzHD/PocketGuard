@@ -1,3 +1,5 @@
+[![HitCount](http://hits.dwyl.io/YTiStrafeNubzHD/PocketGuard.svg)](http://hits.dwyl.io/YTiStrafeNubzHD/PocketGuard)
+
 # PocketGuard
 
 PocketGuard guards your chest against thieves.

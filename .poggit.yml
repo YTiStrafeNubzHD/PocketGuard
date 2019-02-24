@@ -1,6 +1,4 @@
 --- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/YTiStrafeNubzHD/PocketGuard
-branches:
-- master
 projects:
   PocketGuard:
     path: ""

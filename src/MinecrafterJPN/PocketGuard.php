@@ -145,12 +145,12 @@ class PocketGuard extends PluginBase implements Listener {
             if ($owner === $event->getPlayer()->getName()) {
                 $this->databaseManager->unlock($chest);
                 if ($pairChestTile instanceof Chest) $this->databaseManager->unlock($pairChestTile);
-                $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Unlock Level:{$chest->getLevel()->getName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
+                $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Unlock Level:{$chest->getLevel()->getDisplayName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
                 $event->getPlayer()->sendMessage("Completed to unlock");
             } elseif ($attribute !== self::NOT_LOCKED and $owner !== $event->getPlayer()->getName() and !$event->getPlayer()->hasPermission("pocketguard.op")) {
                 $event->getPlayer()->sendMessage("The chest has been locked");
                 $event->getPlayer()->sendMessage("Try \"/pg info\" out to get more info about the chest");
-                $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Unlock Level:{$chest->getLevel()->getName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
+                $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Unlock Level:{$chest->getLevel()->getDisplayName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
                 $event->setCancelled();
             }
         }
@@ -189,7 +189,7 @@ class PocketGuard extends PluginBase implements Listener {
                             $this->databaseManager->normalLock($chest, $event->getPlayer()->getName());
                             if ($pairChestTile instanceof Chest) $this->databaseManager->normalLock($pairChestTile, $event->getPlayer()->getName());
                             $event->getPlayer()->sendMessage("Completed to lock");
-                            $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Lock Level:{$chest->getLevel()->getName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
+                            $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Lock Level:{$chest->getLevel()->getDisplayName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
                         } else {
                             $event->getPlayer()->sendMessage("The chest has already been locked");
                         }
@@ -200,7 +200,7 @@ class PocketGuard extends PluginBase implements Listener {
                             $this->databaseManager->unlock($chest);
                             if ($pairChestTile instanceof Chest) $this->databaseManager->unlock($pairChestTile);
                             $event->getPlayer()->sendMessage("Completed to unlock");
-                            $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Unlock Level:{$chest->getLevel()->getName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
+                            $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Unlock Level:{$chest->getLevel()->getDisplayName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
                         } else {
                             $event->getPlayer()->sendMessage("The chest is not locked with normal lock");
                         }
@@ -211,7 +211,7 @@ class PocketGuard extends PluginBase implements Listener {
                             $this->databaseManager->publicLock($chest, $event->getPlayer()->getName());
                             if ($pairChestTile instanceof Chest) $this->databaseManager->publicLock($pairChestTile, $event->getPlayer()->getName());
                             $event->getPlayer()->sendMessage("Completed to public lock");
-                            $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Public Level:{$chest->getLevel()->getName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
+                            $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Public Level:{$chest->getLevel()->getDisplayName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
                         } else {
                             $event->getPlayer()->sendMessage("The chest has already been locked");
                         }
@@ -234,7 +234,7 @@ class PocketGuard extends PluginBase implements Listener {
                                     break;
                             }
                             $event->getPlayer()->sendMessage($message);
-                            $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Info Level:{$chest->getLevel()->getName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
+                            $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Info Level:{$chest->getLevel()->getDisplayName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
                         } else {
                             $event->getPlayer()->sendMessage("The chest is not locked");
                         }
@@ -246,7 +246,7 @@ class PocketGuard extends PluginBase implements Listener {
                             $this->databaseManager->passcodeLock($chest, $event->getPlayer()->getName(), $passcode);
                             if ($pairChestTile instanceof Chest) $this->databaseManager->passcodeLock($pairChestTile, $event->getPlayer()->getName(), $passcode);
                             $event->getPlayer()->sendMessage("Completed to lock with passcode \"$passcode\"");
-                            $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Passlock Passcode:$passcode Level:{$chest->getLevel()->getName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
+                            $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Passlock Passcode:$passcode Level:{$chest->getLevel()->getDisplayName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
                         } else {
                             $event->getPlayer()->sendMessage("The chest has already been locked");
                         }
@@ -259,10 +259,10 @@ class PocketGuard extends PluginBase implements Listener {
                                 $this->databaseManager->unlock($chest);
                                 if ($pairChestTile instanceof Chest) $this->databaseManager->unlock($pairChestTile);
                                 $event->getPlayer()->sendMessage("Completed to unlock");
-                                $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Passunlock Level:{$chest->getLevel()->getName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
+                                $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:Passunlock Level:{$chest->getLevel()->getDisplayName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
                             } else {
                                 $event->getPlayer()->sendMessage("Failed to unlock due to wrong passcode");
-                                $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:FailPassunlock Level:{$chest->getLevel()->getName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
+                                $this->pocketGuardLogger->log("[" . $event->getPlayer()->getName() . "] Action:FailPassunlock Level:{$chest->getLevel()->getDisplayName()} Coordinate:{$chest->x},{$chest->y},{$chest->z}");
                             }
                         } else {
                             $event->getPlayer()->sendMessage("The chest is not locked with passcode");
